@@ -11,9 +11,10 @@ typedef struct Iterator {
 #define iterator_next(T) ((T)->next((T)))
 
 
-#define iterate(it, type, var, block) \
+#define iterate(it_expr, type, var, block) \
     do { \
-        for(type var = iterator_next((it)); var != NULL; var = iterator_next((it))) \
+        Iterator iterator = (it_expr); \
+        for(type var = iterator_next(&iterator); var != NULL; iterator.index++, var = iterator_next(&iterator)) \
             block \
     } while(0)
 

@@ -26,7 +26,7 @@ clean:
 	rm -rvf $(CACHE)
 
 install:
-	cp -vf src/iterator $(INDIR) 
+	cp -vrf src/iterator $(INDIR) 
 
 
 

@@ -11,7 +11,7 @@ typedef struct {
 
 static void * vector_next(Iterator * it) {
     if(it->index < ((Vector*) it->context)->size) {
-        return &((Vector*) it->context)->arr[it->index++];
+        return &((Vector*) it->context)->arr[it->index];
     } else {
         return NULL;
     }
@@ -37,10 +37,9 @@ Iterator vector_iterator(Vector * self) {
 int main(void) {
     int arr[] = {0, 1, 2, 4, 8, 16, 32, 64, 128, 256};
     Vector v = vector(sizeof(arr)/sizeof(*arr), arr);
-    Iterator it = vector_iterator(&v);
 
-    iterate(&it, int*, i, {
-        printf("%ld - %d\n", it.index, *i);
+    iterate(vector_iterator(&v), int*, i, {
+        printf("%ld - %d\n", iterator.index, *i);
     });
 
     printf("Program exit..\n");
